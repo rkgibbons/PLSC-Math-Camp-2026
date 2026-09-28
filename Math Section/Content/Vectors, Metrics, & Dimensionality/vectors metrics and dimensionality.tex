@@ -1,0 +1,286 @@
+
+\documentclass[10pt]{beamer}
+\definecolor{navyblue}{RGB}{0,32,96}
+\usecolortheme[named=navyblue]{structure}
+\setbeamercolor{palette primary}{bg=navyblue,fg=white}
+\setbeamercolor{palette secondary}{bg=navyblue!85!black,fg=white}
+\setbeamercolor{palette tertiary}{bg=navyblue!70!black,fg=white}
+\setbeamercolor{palette quaternary}{bg=navyblue,fg=white}
+\setbeamercolor{titlelike}{parent=palette primary}
+\setbeamercolor{block title}{bg=navyblue,fg=white}
+\setbeamercolor{block body}{bg=navyblue!8}
+\setbeamercolor{block title alerted}{bg=red!70!black,fg=white}
+\setbeamercolor{block body alerted}{bg=red!8}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage[normalem]{ulem}
+\usepackage{siunitx}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{amssymb}
+\usepackage[skip=10pt plus1pt] {parskip}
+
+%Information to be included in the title page:
+\title{Vectors, Dimensions, \& Metrics}
+\author{UChicago Political Science Math Camp}
+\institute{Ryan Gibbons}
+\date{2026}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{A Foundational Social Science Question}
+    \begin{block}{Question}
+        How do we describe things?
+    \end{block}
+    \pause
+    \vspace{.5cm}
+    \begin{block}{A bit more formally...}
+        How do we encode information in order to analyze phenomena?
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{A Look Back}
+\begin{block}{}
+We use \textbf{sets} to describe certain information about characteristics, attributes, or measurements.
+\end{block}
+\vspace{.3cm}
+What characteristics could we describe using our four fundamental sets, $\mathbb{R}, \mathbb{Q}, \mathbb{N}, \mathbb{Z}$? \\
+\pause
+\vspace{.3cm}
+\begin{itemize}
+    \item The \underline{reals}: VDEM index, HDI
+    \item The \underline{rationals}: population density, GDP per capita (with a twist -- why does this work?)
+    \item The \underline{naturals}: vote totals, legislature size, regime length
+    \item The \underline{integers}: changes in seat totals, ordinal preference rankings about a median
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}{But, there are limitations...}
+    What about discrete characterizations? e.g., regime type, leadership names, treatment categories\dots \\
+    \vspace{.5cm}
+    How might we define a set for each of these examples? \\ \pause
+    \vspace{1.5cm}
+    A \underline{degenerate} example: the set of recorded entries. \\ \emph{\textcolor{CadetBlue}{Question: Is this useful to define \underline{ex ante?}}} %a bit more theory-of-science here. Useful if you have a specific idea of what you're trying to find/mix/etc., but if the research is in a more exploratory phase, this isn't necessarily worthwhile and can limit you from recovering a full understanding. Better to go about data collection WITHOUT specifying the set, then filter/clean down to the specified set of choosing.
+\end{frame}
+
+\begin{frame}{Encoding Layers}
+    \begin{itemize}
+    \item \textcolor{gray}{\sout{Some}} Most things in life can't be (meaningfully) described by a single element of a single set. 
+    \pause
+    \item To encode multiple metrics, we need to introduce \emph{dimensionality}:
+    \begin{itemize}
+        \item Define each characteristic as a \emph{dimension}.
+        \item An $n$-dimensional \emph{vector} encodes $n$ different characteristics.
+    \end{itemize}
+    \item Think: one dimension, ``2D plane,'' ``three-space'', etc.
+    \end{itemize}
+    \pause
+    \vspace{.3cm}
+    \textcolor{CadetBlue}{An important note: Don't get too bogged down in the terminology here. The key concept is that we are encoding multiple measurements into a single object.}
+\end{frame}
+
+\begin{frame}{One Dimension}
+    \begin{center}
+        \includegraphics[width=10cm]{onedirection.jpg}
+    \end{center}
+\end{frame}
+
+\begin{frame}{One Dimension}
+    \begin{itemize}
+     \item Our standard framework, measuring one characteristic at a time.
+     \item Can use our fundamental sets ($\mathbb{R}, \mathbb{Q}, \mathbb{N}, \mathbb{Z}$), or any other sets of our choosing
+\end{itemize}
+\vspace{.3cm}
+
+\begin{block}{Qualitative}
+    The appropriate discrete set
+\end{block}
+
+\begin{block}{Quantitative}
+    The number line
+\end{block}
+
+\textcolor{CadetBlue}{Question: why can't we (always) use a number line analogue for qualitative characteristics?} %answer: qualitative traits are not always well-ordered, so we can't make directional comparisons
+\end{frame}
+
+
+\begin{frame}{The Good Stuff}
+    To describe the \emph{possible set} of multiple characteristics, we take the \underline{outer product} of the relevant dimensions:
+    
+    \begin{align*}
+        &\{\text{Char. }1\} \times \{\text{Char. }2\} \times ... \times \{\text{Char. }n\} \\
+        = & \prod_{i = 1}^{n}\{\text{Char. }i\}
+    \end{align*}
+
+    This means that all observations will be vectors of the form:  
+
+    \begin{align*}
+        (\text{Char. }1, \text{Char. }2, ..., \text{Char. }n)
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Example: Location}
+    We use latitude and longitude to describe geographic location:
+
+    \begin{align*}
+        \text{Earth} &:=  \{Longitude\} \times \{Latitude\} \\
+        &:= \{x \in \mathbb{R}: -90 \leq x \leq 90\} \times \{y \in \mathbb{R}: |y| \leq 90\}
+    \end{align*}
+
+    Then, any location on earth can be exactly identified as some vector $(x,y)$.  \\
+    \pause
+
+    \emph{\textcolor{CadetBlue}{We live in 3-space. What assumption makes a 2-space measurement sufficient?}}
+\end{frame}
+
+\begin{frame}{What Comes Next?}
+    You usually can't visualize beyond three-space. In the rare event that you can, you usually shouldn't. But, you can express $\mathbb{R}^4$, $\mathbb{R}^5$,...
+
+\vspace{.3cm}
+    Beyond an object's position, we could consider density, temperature, color, favorite album...
+\vspace{.3cm}
+
+    Most (all?) quantitative analyses can't use unprocessed qualitative data, so we transform qualitative observations into quantitative variables.
+\end{frame}
+
+\begin{frame}{A Not-So-Scary Formulation}
+     \begin{block}{Real Space}
+        Suppose we want to identify $n$ characteristics. Then, we generally use $\mathbb{R} \times \mathbb{R} \times ... \times \mathbb{R}$. This is our construction of $\mathbb{R}^n$: ``real space."
+    \end{block}
+
+    \begin{block}{Vectors}
+    A \textbf{vector} is an element of $\mathbb{R}^n$ (at least in this characterization).
+    \end{block}
+\end{frame}
+
+\begin{frame}{A Brief Question}
+    Why use $\mathbb{R}^n$ so generally? Why not $\mathbb{N}^n$ for entirely discrete data, or $\mathbb{R}^\ell \times \mathbb{N}^k$ for a combination of $\ell$ continuous values and $k$ discrete ones? 
+\end{frame}
+
+\begin{frame}{Measuring Vectors}
+
+Suppose $\textbf{x} \in \mathbb{R}^n$ is a vector such that $\textbf{x} = (x_1,x_2,...,x_n)$.
+
+We can characterize the \emph{length} or \emph{norm} of $\textbf{x}$ as its distance from \textbf{0}:
+
+\begin{align*}
+    ||\textbf{x}|| &= \Big(x_1^2 + x_2^2 + ... + x_n^2 \Big)^{1/2}
+\end{align*}
+
+(How is this connected to our absolute value operator?)
+
+\end{frame}
+
+\begin{frame}{Comparison}
+
+    We often (always?) want to compare multiple elements, vectors, observations, etc.
+
+    But, how we make these comparisons is non-trivial.
+
+\end{frame}
+
+\begin{frame}{An Example of Non-Triviality}
+
+Suppose we take all 200+ countries in the world, and we compare each possible pairing ($200^2$ tuples). Which two countries are the most (or least) similar?
+
+\begin{itemize}
+    \item By distance from center-to-center
+    \item By most similar climates
+    \item By most similar population/ethnic consistency
+\end{itemize}
+
+Are any of these right? Are any even wrong?
+
+\end{frame}
+
+\begin{frame}{Metrics}
+    A \textbf{metric} is a function that returns the distance between two elements in a set.
+\vspace{.5cm}
+    We commonly refer to a metric as ``$d$'' such that $d(a,b) \in \mathbb{R}_+$
+\vspace{.5cm}
+    Though we can choose metrics rather freely, there are three conditions every metric must satisfy.
+\end{frame}
+
+\begin{frame}{Triangle Inequality}
+
+The Triangle Inequality is a key foundation of algebra, and states that for any elements $x,y,z$:
+
+\begin{align*}
+    d(x,z) & \leq d(x,y) + d(y,z)
+\end{align*}
+
+That is -- no path between any two elements can be shorter than the ``direct'' route.
+
+\end{frame}
+
+\begin{frame}{Triangle Violations}
+This seems rather obvious, but we can break it relatively easily:
+\vspace{1cm}
+Suppose $d(x,y) = (x - y)^2$. Does this hold for $(x,y,z) = (0,1,2)$?
+\end{frame}
+
+\begin{frame}{Symmetry}
+Symmetry is perhaps our simplest condition: distance is equivalent in both directions.
+\vspace{.7cm}
+
+A metric $d$ is symmetric iff $d(x,y) = d(y,x)$ for all $x,y$.
+\vspace{.7cm}
+
+Suppose $d(x,y) = x-y$. Then, $d(2,1) = 1$, but $d(1,2) = -1$. So, symmetry is violated.
+\end{frame}
+
+
+\begin{frame}{Positive Definiteness}
+A metric $d$ is \textbf{positive definite} iff it satisfies two conditions:
+
+\begin{enumerate}
+    \item For all $x,y$, we have $d(x,y) \geq 0$;
+    \item $d(x,y) = 0 \iff x = y$.
+\end{enumerate}
+
+That is: no negative distances, and non-equivalency must return non-zero distance.
+
+\end{frame}
+
+\begin{frame}{The Discrete Metric}
+A very simple metric we often consider is called the \textbf{discrete metric}, which returns a binary equivalency value:
+\begin{align*}
+    d(x,y) &= \begin{cases}
+    1, & x \neq y \\
+    0, & x = y
+    \end{cases}
+\end{align*}
+
+Is this a valid metric? Is it useful in the social sciences?
+
+\end{frame}
+
+\begin{frame}{More Realistically...}
+
+We have a standard ``default'' metric that we call \textbf{euclidean distance}:
+
+\begin{align*}
+    d(\textbf{x},\textbf{y}) &= \sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2 + ... + (x_n - y_n)^2} \\
+    &= \Bigg(\bigg(\sum_{i=1}^n \Big| x_i - y_i \Big|^2 \bigg) \Bigg)^{1/2}
+\end{align*}
+
+\end{frame}
+
+\begin{frame}{A Generalized Approach}
+
+    Euclidean distance is one iteration of what we call the ``$p$-metric'':
+
+    \begin{align*}
+        d_p(\textbf{x},\textbf{y}) &= \Bigg(\bigg(\sum_{i=1}^n \Big| x_i - y_i \Big|^p \bigg) \Bigg)^{1/p}
+    \end{align*}
+
+    In the social sciences, if we want to use $p \neq 2$, we generally need to justify why...
+
+\end{frame}
+
+\end{document}

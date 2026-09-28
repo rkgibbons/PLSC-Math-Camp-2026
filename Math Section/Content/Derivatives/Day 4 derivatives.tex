@@ -1,0 +1,573 @@
+
+\documentclass[10pt]{beamer}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=10pt plus1pt] {parskip}
+
+%Information to be included in the title page:
+\title{Calculus Pt. 1 (Derivation)}
+\author{UChicago Political Science Math Camp}
+\institute{Ryan Gibbons \& Luke Cain}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+
+\begin{frame}{Analysis of Functions}
+    So far, we've talked about various results we might want to recover from a function:
+
+    \begin{itemize}
+        \item The value of an \textbf{output} given \textbf{inputs}
+        \item The \textbf{inverse} (an input given an output)
+        \item The \textbf{limit} of a function when a numerical output may not exist
+        \item The \textbf{end behavior} of a function as a parameter approach zero, infinity, or some asymptotical border 
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{The Plan}
+    \begin{enumerate}
+        \item What the hell is this and why do we need this?
+        \item How do we actually do this?
+        \item Many rules, very quickly
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}
+\thispagestyle{empty}
+\vspace{1cm}
+\begin{center}
+\begin{Huge}
+    What The Hell Is This \\
+    \vspace{.5cm}
+    And Why Do We Need It?
+\end{Huge}
+\end{center}
+\end{frame}
+
+\begin{frame}{What is Calculus?}
+
+\textit{The study of how functions change} \\
+\vspace{2cm}
+\pause
+
+We use two fundamental operations for calculus:
+
+\begin{itemize}
+    \item Derivation
+    \item Integration
+\end{itemize}
+    
+\end{frame}
+
+\begin{frame}{What is Derivation?}
+    \begin{itemize}
+        \item A derivative expresses the \textbf{instantaneous rate of change} of a function
+        \item We isolate this rate to represent the impact of a single variable\footnote{mostly (don't worry about it) (for now)}
+        \item \textit{How does the function's output change as a given input variable changes?}
+    \end{itemize}
+
+    \vspace{1cm}
+
+    Take the derivative of \textcolor{blue}{$f$} with respect to \textcolor{red}{$x$} $\rightarrow$ \\
+    \vspace{.3cm}
+    How does a change in \textcolor{red}{$x$} affect the value of \textcolor{blue}{$f$}?
+\end{frame}
+
+\begin{frame}{Derivation in Political Science}
+We use derivatives whenever we want to evaluate \emph{marginal effects} -- that is, almost always
+
+For example, we might ask: what is the effect of educational attainment on future wealth? Of legislature size on legislative productivity? Of polarization on political violence?
+
+\emph{Any causal mechanism essentially requires this approach -- verbally, mathematically, or otherwise}
+\end{frame}
+
+\begin{frame}{An Example: Legislative Capacity}
+
+Suppose we have some function $f: [0,1] \to \mathbb{R}_+$ which transforms an index of political polarization to an expected number of bills passed per session. 
+
+Derivation lends two possible conclusions:
+
+\begin{enumerate}
+    \item The \emph{direction} of the effect of polarization on legislative capacity, and
+    \item The \emph{magnitude} of this effect
+\end{enumerate}
+
+\textcolor{gray}{Why might direction matter more than magnitude?}
+    
+\end{frame}
+
+\begin{frame}{What Do Derivatives Look Like?}
+    A derivative can look like one of two outputs:
+\vspace{.3cm}
+    \begin{enumerate}
+        \item A \textbf{function} $f'(x)$, which returns the value of a derivative for some input $x \in \mathbb{R}$
+        \item A \textbf{value} $f'(x=a)$, the output value of $f'$ for a specific $x = a \in \mathbb{R}$
+    \end{enumerate} 
+\vspace{.3cm}
+    Usually, we want the function $f'(x)$ unless specifically given some $x=a$
+\end{frame}
+
+\begin{frame}{Differentiable Functions}
+    A function is \textbf{differentiable} if it can be derived
+
+    \vspace{.5cm}
+
+    A differentiable function is \textbf{smooth} in appearance \textit{and has no vertical asymptotes}.
+
+    \[\implies f(x) \in \mathbb{R} \; \text{ and } \; f(x) \neq \pm \infty\]
+\end{frame}
+
+\begin{frame}{Derivatives \& Notation}
+
+(From above) Take the derivative of \textcolor{blue}{$f$} with respect to \textcolor{red}{$x$} $\rightarrow$ How does a change in \textcolor{red}{$x$} affect the value of \textcolor{blue}{$f$}?
+
+\begin{itemize}
+    \item $\frac{d\textcolor{blue}{f}}{d\textcolor{red}{x}}$, often shortened to $\frac{d}{d\textcolor{red}{x}}$
+    \item $\frac{\partial \textcolor{blue}{f}}{\partial \textcolor{red}{x}}$, sometimes shortened to $\frac{\partial}{\partial\textcolor{red}{x}}$
+    \item $\textcolor{blue}{f}'(\textcolor{red}{x})$ when there is a single or very clear choice variable
+    \item $\textcolor{blue}{f}_{\textcolor{red}{x}}$ in some economics literature (usually there is a comment)
+\end{itemize}
+
+For large equations, you might use this notation as an operator: \[\frac{\partial}{\partial \textcolor{red}{x}}(\text{\textcolor{blue}{write function here}})\]
+    
+\end{frame}
+
+\begin{frame}{Legislative Capacity Example}
+    Suppose $f$ takes the following form:
+    \begin{align*}
+        f(x) &= \frac{1}{x}
+    \end{align*}
+    And (just trust me for now) $f'$ is as follows:
+    \begin{align*}
+        f'(x) &= -\frac{1}{x^2}
+    \end{align*}
+
+    Where $x \in [0,1]$ represents our polarization index.
+
+    \begin{itemize}
+        \item What direction is the (supposed) relationship between polarization and capacity?
+        \item When is the marginal effect of polarization on capacity stronger / weaker?
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Units of Derivation}
+As we alluded earlier, derivation invites a unique consideration: what units does a derivative represent?
+
+\pause
+
+A derivative $\frac{d}{dx}f(x)$ the unit rate of change of $f$ with respect to a single-unit increase in $x$, but makes no further clarification as to either unit.
+
+\vspace{1cm}
+\textcolor{gray}{How might we overcome this to compare relative magnitudes?}
+\end{frame}
+
+
+
+\begin{frame}{Can You Take A Derivative's Derivative?}
+    \pause
+    yes
+\end{frame}
+
+\begin{frame}{Iterated Derivatives}
+
+    Any differentiable function can be derived (including the derivation of a function):
+
+    \[\frac{d}{dx} f(x) = \frac{df(x)}{d x} = f'(x)\]
+
+    \[\frac{d}{dx} \frac{d f(x)}{dx} = \frac{d^2 f(x)}{dx} = f''(x)\]
+
+    \[\frac{d}{dx} \frac{d^2 f(x)}{dx} = \frac{d^3 f(x)}{dx} = f'''(x) ...\]
+
+    \[\frac{d}{dx}\frac{d^n f(x)}{dx} = \frac{d^{n+1}f(x)}{dx}\]
+\end{frame}
+
+\begin{frame}{Iterated Derivatives}
+    We refer to the 2nd, 3rd, ... $n$th derivative in this sense.
+
+    \begin{itemize}
+        \item The derivative of $f(x)$ represents the rate of change of $f(x)$.
+        \item The second derivative of $f(x)$ is $f'(x)$, and represents the rate of change of the rate of change of $f(x)$...
+        \item The easiest example is physics, where $t = time$:
+
+        \[\text{\textbf{Position}} \Rightarrow \frac{d}{dt} = \text{\textbf{Velocity}} \Rightarrow \frac{d}{dt} = \text{\textbf{Acceleration}} \Rightarrow \frac{d}{dt} = \text{\textbf{Jerk}}\]
+    \end{itemize}
+
+    \textcolor{red}{Integration simply reverses the flow!}
+\end{frame}
+
+\begin{frame}{Beating A Dead Horse}
+    We go back to our legislative capacity example, and continue to extent:
+    \begin{align*}
+        f(x) &= \frac{1}{x} \\
+        f'(x) &= -\frac{1}{x^2} \\
+        f''(x) &= \frac{2}{x^3}
+    \end{align*}
+    The rate of change increases over time -- in direction, but NOT in magnitude.
+\end{frame}
+
+\begin{frame}{Broader Questions}
+    Does the $n$th derivative of a (differentiable) function always exist? 
+
+    \pause
+
+    Does the $n$th derivative return interpretable units of measurement?
+\end{frame}
+
+\begin{frame}{Two Trivial Cases}
+    There are two types of functions\footnote{(1) is a special case of (2)} with trivial derivatives:
+
+    \begin{enumerate}
+        \item Constant functions: $f(x)=2$
+        \item Linear functions: $f(x) = 2x$
+    \end{enumerate}
+
+    We can revert to our trusty slope calculations:
+
+    \[y = mx+ b \quad \implies \quad \frac{d}{dx} = m \]
+
+    \[m \;=\; \frac{\text{Rise}}{\text{Run}} \;=\; \frac{\Delta y}{\Delta x} \;=\; \frac{y_2 - y_1}{x_2 - x_1}\]
+\end{frame}
+
+\begin{frame}{Getting Serious}
+    Of course, we are rarely interested in trivial derivatives (OLS coefficients aside)... \\
+
+    \vspace{.5cm}
+
+    To better approach the \textit{instantaneous} rate of change for a non-linear function, we want to shrink our ``Run," or $\Delta x$ \\
+
+    \vspace{.5cm}
+
+    \textcolor{purple}{\href{https://www.desmos.com/calculator/aqv7kipsmt}{What might this look like?}} \\
+
+    \pause
+
+    \vspace{.5cm}
+
+    \textit{The smaller the ``Run," the closer the approximation... What might this imply?}  
+\end{frame}
+
+\begin{frame}{The Limit Definition}
+    \[\frac{df}{dx} = \lim_{h \to 0}\frac{\overbrace{f(a+h)}^{y_2}-\overbrace{f(a)}^{y_1}}{\underbrace{h}_{x_2 - x_1}}\]
+\end{frame}
+
+
+\begin{frame}{...is mostly bullshit}
+    Analytically, this makes sense, but a huge problem pops up right away... \\
+
+    \vspace{.5cm}
+
+    Sometimes we can solve through this anyways. Take $f(x)$, and $x=2$:
+
+    \[f'(2) = \lim_{h \to 0} \frac{(2+h)^2 - 2^2}{h}\]
+    \vspace{.2cm}
+    \[ \frac{(2+h)^2 - h^2}{h} \; \Rightarrow \; \frac{4+4h+h^2 - 4}{h} \; \Rightarrow \; \frac{4h + h^2}{h}\; \Rightarrow \; \frac{h(4+h)}{h}\;  \Rightarrow \; 4+h\]
+    \vspace{.2cm}
+    \[ \lim_{h \to 0} \; 4+h = 4\]
+
+    \[ \therefore f'(2)= 4\]
+
+    What about $f(x) = (1-x)^2$? Or a multi-term polynomial? Or a generalizable function?
+\end{frame}
+
+\begin{frame}
+\thispagestyle{empty}
+\vspace{1cm}
+\begin{center}
+\begin{Huge}
+    How Do We Actually Do This?
+\end{Huge}
+\end{center}
+\end{frame}
+
+\begin{frame}
+\begin{center}
+    \includegraphics[width=5cm]{newton.jpeg}
+\tiny{(maybe)}
+\end{center}
+\end{frame}
+
+\begin{frame}{The Good Stuff}
+    We can use a series of rules instead of the limit definition to derive a function in its general form \textit{\underline{for any value of $x$}}:
+
+
+    \[f(x) \; \implies \; \text{[RULE]} \; \implies \; f'(x)\]
+
+    Note that now, our derivative is itself another function of $x$, and requires no specification of $x$ or $a$:
+
+    \[f'(x) = \frac{d}{dx}f(x) \; \forall \; x \in \text{domain of }f\]
+
+    \textit{(Wanna play with notation here?)}
+\end{frame}
+
+
+
+\begin{frame}{98\% of Mathematical History}
+
+The \textbf{Power Rule}:
+
+\[\frac{d}{dx} x^a = a\cdot x^{a-1}\]
+
+
+    
+\end{frame}
+
+\begin{frame}{Power Rule Examples}
+    \begin{itemize}
+        \item A simple application\[\frac{d}{dx} x^2 = 2 \cdot x ^{2-1} = 2x\]
+        \item Works with any natural numbers ($\mathbb{N}$) \[\frac{d}{dx} x^5 = 5 \cdot x^{5-1} = 5x^4 \]
+        \item Also works with negative numbers ($\mathbb{Z}$)\[\frac{d}{dx} \frac{1}{x^3} = \frac{d}{dx} x^{-3} = -3 \cdot x^{-4} = -\frac{3}{x^4}\]
+        \item Also works with roots ($\mathbb{Q}$ and by expansion $\mathbb{R}$) \[\frac{d}{dx} \sqrt[3]{x^5} = \frac{d}{dx} x^{\frac{5}{3}} = \frac{5}{3} \cdot x^{\frac{5}{3}-1} = \frac{5}{3} x^{\frac{2}{3}} = \frac{5\sqrt[3]{x^2}}{3}\]
+    \end{itemize}
+
+This will surely create no problems for us in the future
+\end{frame}
+
+\begin{frame}{The Sum Rule}
+\[\frac{d}{dx} \bigg(f(x) + g(x) \bigg) = \frac{d}{dx} f(x) + \frac{d}{dx} g(x)\]\\
+\vspace{3cm}
+that's it
+\end{frame}
+
+\begin{frame}{A Power Rule Corollary}
+    \begin{enumerate}
+        \item We know that $\frac{d}{dx} x^a = a \cdot x^{a-1}$ (\textbf{Power Rule)} and that $\frac{d}{dx} [f(x) + g(x)] = \frac{d}{dx}f(x) + \frac{d}{dx}g(x)$ (\textbf{Sum Rule}).
+        \item We also know that for a constant $b$, $b \cdot c = \sum_1^b c$, or $c$ added $b$ times.
+        \item Then, the derivative is the sum of $x^a$ added up $b$ times: $\frac{d}{dx} \bigg[ b \cdot x^a\bigg] = \sum_1^b \frac{d}{dx} x^a$
+        \item We know that $\sum_1^n x = nx$, so 
+
+        \[\sum_1^b \frac{d}{dx} x^a = b \cdot \frac{d}{dx} x^a  \quad \implies \quad \frac{d}{dx} \bigg[ b \cdot x^a \bigg] = b \cdot a \cdot x^{a-1}\]
+    \end{enumerate}
+
+    $\implies$ \textbf{Coefficients:} The coefficient of a term is kept as a coefficient of that term's derivative. (i.e., multiply $a$ by the coefficient as well)
+\end{frame}
+
+\begin{frame}{And Another One}
+\begin{enumerate}
+    \item We know that $x^0 = 1 \; \forall \; x$.
+    \item Therefore, $a = a \cdot x^0$ for any $a \in \mathbb{R}$.
+    \item So, the derivative of $a$ can be solved using the power rule:
+
+    \[\frac{d}{dx} a = \frac{d}{dx}\bigg[a \cdot x^0 \bigg] = 0 \cdot a \cdot x^{-1} = 0\]
+\end{enumerate}
+
+ $\implies $ \textbf{Constants:} The derivative of a constant is $0$.
+
+\end{frame}
+
+
+\begin{frame}{Working In Terms}
+    \textit{Always work with the Power Rule when possible!} \\
+
+    \vspace{.25cm}
+
+    We can use the sum rule to enable the power rule, so long as we can expand expressions (do this if possible!):
+
+    \[2x(x-1) \; \implies \; 2x^2 - 2x\]
+
+    \[(x-1)(x+4) \; \implies \; x^2 + 3x - 4\]
+
+    But, what if we can't?
+\end{frame}
+
+\begin{frame}
+\thispagestyle{empty}
+\vspace{1cm}
+\begin{center}
+\begin{Huge}
+    Many Rules, Very Quickly (The Important Ones)
+\end{Huge}
+\end{center}
+\end{frame}
+
+\begin{frame}{The Other 2\%}
+
+The \textbf{Chain Rule}:
+
+\[\frac{d}{dx} f(g(x)) = f'(g(x)) \cdot g'(x)\]
+
+or
+
+\[\frac{d}{dx} f(u) = f'(u) \cdot u'\]
+
+Depending on your persuasion 
+
+\end{frame}
+
+\begin{frame}{Chain Rule Examples}
+    \begin{itemize}
+        \item \[\frac{d}{dx} (x-1)^2\]
+        Set $u = x-1$ and $f(u) = u^2$ \pause
+        \item Then, $u' = 1$ and $f'(u) = 2u$ \pause
+        \item Put it together, then
+
+        \[f'(u) \cdot u' = 2u \cdot 1 = 2(x-1)\]
+
+        \[\frac{d}{dx} (x-1)^2 = 2(x-1)\]
+    \end{itemize}
+    Note that this would be easier to work with as $(x-1)^2 = x^2 - 2x + 1$, though...
+\end{frame}
+
+\begin{frame}{More Chain Rule}
+
+\[\frac{d}{dx} \frac{1}{(2x^2 + 3x)^4}\]
+
+We could expand...
+
+\[\frac{1}{(2x^2 + 3x)^4} = \frac{1}{(2x^2 + 3x)(2x^2 + 3x)(2x^2 + 3x)(2x^2 + 3x)}\]
+
+And then derive a ~12 term expression. Or:
+\pause
+\[u = 2x^2 + 3x, \quad f = \frac{1}{u^4} = u^{-4}\]
+\[u' = 4x + 3, \quad f'(u) = -4u^{-5} = -\frac{4}{u^5} \]
+
+\[\frac{d}{dx} f(u) = f'(u) \cdot u' = \frac{-4(4x +3)}{(2x^2 + 3x)^5} \]
+
+\end{frame}
+
+\begin{frame}{A Chain Rule Warning}
+    \begin{itemize}
+        \item With polynomials (incl. roots), the chain rule is a \textbf{helpful tool}
+        \item With non-polynomials (i.e. exponential or trigonometric) or unspecified/implicit functions, the chain rule can become a \textbf{necessary step}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Product Rule}
+    \begin{itemize}
+        \item Sometimes, we need to derive multiple functions housed within one term (i.e., operations are multiplied rather than added)
+        \item If we can't expand algebraically (or if doing so is prohibitively complicated), we can use the \textbf{product rule}:
+    \end{itemize}
+
+    \[\frac{d}{dx} \bigg[ u(x) \cdot v(x) \bigg] = u'(x) \cdot v(x) + u(x) \cdot v'(x)\]
+\end{frame}
+
+\begin{frame}{Product Rule Example}
+    \[(2x^2 + 3)(x^4 + 4x)\]
+
+    
+\end{frame}
+
+\begin{frame}{Product Rule Example}
+
+    Set $u(x) = 2x^2 + 3$ and $v(x) = x^4 + 4$. Then,
+
+    \[\textcolor{red}{(2x^2 + 3)} \cdot \textcolor{blue}{(x^4 + 4x)} = \textcolor{red}{u(x)} \cdot \textcolor{blue}{v(x)}\]
+    
+    \begin{align*}
+    \frac{d}{dx} \bigg[\textcolor{red}{u(x)} \cdot \textcolor{blue}{v(x)} \bigg] &= \textcolor{red}{u'(x)} \cdot \textcolor{blue}{v(x)} + \textcolor{red}{u(x)} \cdot \textcolor{blue}{v'(x)} \\ &= \textcolor{red}{\frac{d}{dx}\Big[ 2x^2 + 3\Big]} \cdot \textcolor{blue}{(x^4 + 4x)} + \textcolor{red}{(2x^2 + 3)} \cdot \textcolor{blue}{\frac{d}{dx} \Big[ x^4 + 4x\Big]} \\ \\
+    &= \textcolor{red}{4x}\textcolor{blue}{(x^4  + 4x)} + \textcolor{red}{(2x^2 + 3)}\textcolor{blue}{(4x^3 + 4)}
+    \end{align*}
+
+\end{frame}
+
+\begin{frame}{A Note on Simplification}
+    Simplify with \textit{purpose}. \\
+\vspace{.5cm}
+    Things to (often) look for:
+    \begin{itemize}
+        \item Reduction of terms
+        \item Simplification of fractions
+        \item Combining exponents ($x^a x^b = x^{a+b}$, $x^{a^b} = x^{ab}$ etc.)
+        \item Single $\pm$ constants
+        \item Explicitly $\pm$ components (3 terms or fewer!)
+        \end{itemize}
+\end{frame}
+
+\begin{frame}{More Product Rule Examples}
+    Like the Chain Rule, the Product Rule ranges from ``inefficient" to ``useful" to ``necessary":
+
+    \begin{align*}
+    \frac{d}{dx} \bigg[(2x^2 + 3)(x^4 + 4x)\bigg] &\implies \text{\textbf{INEFFICIENT}} \\
+    \frac{d}{dx} \bigg[ (4x^2+2)^3 (3x-x^3)\bigg] &\implies \text{\textbf{USEFUL}}\\
+    \frac{d}{dx} \bigg[ 2^x(2x+x^4)\bigg] &\implies \text{\textbf{NECESSARY}}
+    \end{align*}
+    
+\end{frame}
+
+\begin{frame}
+\thispagestyle{empty}
+\vspace{1cm}
+\begin{center}
+\begin{Huge}
+    Many Rules, Very Quickly (The Other Ones)
+\end{Huge}
+\end{center}
+\end{frame}
+
+\begin{frame}{Quotient Rule}
+    We can derive the Quotient Rule from the Product Rule, using the definition of multiplication:
+    \[u(x) \div v(x) = \frac{u(x)}{v(x)} = u(x) \cdot \Big(v(x)^{-1}\Big)\] \pause
+    Then, we have:
+    \begin{align*}
+    \frac{d}{dx} \bigg[\frac{u(x)}{v(x)} \bigg]&= u(x) \cdot \frac{d}{dx} v(x)^{-1} + \frac{d}{dx} u(x) \cdot v(x)^{-1}\\
+    &= u(x) \cdot \frac{-v'(x)}{\Big(v(x)\Big)^2} + u'(x) \cdot \frac{1}{v(x)} \\
+    &= \frac{-v'(x)\cdot u(x)}{\Big(v(x)\Big)^2} + \frac{u'(x)}{v(x)} \\
+    &= \frac{-v'(x)\cdot u(x)}{\Big(v(x)\Big)^2} + \frac{u'(x) \cdot v(x)}{\Big(v(x)\Big)^2 } = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{\Big(v(x)\Big)^2}
+    \end{align*}
+\end{frame}
+
+\begin{frame}{Quotient Rule (Sans Fluff)}
+    \[\frac{d}{dx} \bigg[ \frac{u(x)}{v(x)} \bigg] = \frac{u'(x) \cdot v(x) - u(x) \cdot v'(x)}{\Big(v(x)\Big)^2}\]
+    \vspace{1cm}
+    
+    \textit{Even if you do not remember/replicate this formula, it is equivalent to the product rule}
+\end{frame}
+
+\begin{frame}{A Notation Note}
+    Sometimes, it's not quite clear what is being derived:
+
+    \[\frac{d}{dx} \; f(x) + g(x)\]
+    \[\frac{d}{dx}h(x)j(x)\]
+
+    (or it just looks ugly) \\
+\vspace{.5cm}
+    When in doubt, use brackets:
+
+    \[\frac{d}{dx} \bigg[h(x)\bigg] \cdot j(x) \neq \frac{d}{dx}\bigg[ h(x) j(x) \bigg]\]
+\end{frame}
+
+\begin{frame}{Practice Problems}
+    do a few
+\end{frame}
+
+\begin{frame}{Deriving Exponentials}
+    Any time the deriving variable is in an exponent, the rule is a bit specific:
+
+    \[\frac{d}{dx} a^x = a^x \ln (a)\]
+
+    How might we apply the chain rule in the exponent?
+\end{frame}
+
+\begin{frame}{Something of Note}
+    The exponential rule is true for all positive reals. But, recall our definition that $\ln a = \log_e a$ and the logarithm rules:
+
+    \[\log_bx=y \quad \quad b^y=x\]
+
+    We can then see the following:
+
+    \[\frac{d}{dx} e^x = e^x\]
+\end{frame}
+
+\begin{frame}{Lastly, Logarithms}
+    Lastly, we have the general derivation for logarithms:
+
+    \[\frac{d}{dx} \log_bx = \frac{1}{x \ln b}\]
+
+    This solves a key limitation of the power rule...
+\end{frame}
+
+\begin{frame}{Why Logarithms Matter Here}
+    The power rule lends that $\frac{d}{dx} nx^a = anx^{a-1}$.
+
+    If integration is the reverse of derivation (more on this Wednesday), then suppose $\int nx^a dx = \frac{n}{a+1}x^{a+1}$.
+
+    How might we then express $\int \frac{1}{x} dx$?
+\end{frame}
+
+\end{document}

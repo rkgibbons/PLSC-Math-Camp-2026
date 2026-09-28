@@ -1,0 +1,59 @@
+
+\documentclass[10pt]{beamer}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=10pt plus1pt] {parskip}
+
+%Information to be included in the title page:
+\title{Formal Logic}
+\author{UChicago Political Science Math Camp}
+\institute{Ryan Gibbons \& Luke Cain}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\begin{frame}{A Justification of Social Science}
+    \begin{itemize}
+        \item Social science as an \emph{explanatory pursuit} (positivism)
+        \item Evidentiary collection and analysis provides a \emph{means} to positive explanations
+        \item Unexplained phenomena are unanswered questions
+    \end{itemize}
+\vspace{.7cm}
+A central motivation: we use empirical information to produce theoretical insights, and we want our theoretical insights to be \emph{maximally applicable} while retaining accuracy
+\end{frame}
+
+
+\begin{frame}{The Structure of Formal Logic}
+    Formal logic largely focuses on three translations:
+    \begin{enumerate}
+        \item Empirical observations into informational inputs
+        \item Informational inputs into theoretical mechanisms
+        \item Theoretical mechanisms into applied inference and/or prediction
+    \end{enumerate}
+
+    We want to maximize what we can gleam from each of these three translations. 
+\end{frame}
+
+
+\begin{frame}{Foundational Notation}
+    Formal logic requires formal notation, even beyond our set-building language. A brief overview:
+
+    \begin{itemize}
+        \item $\implies$ \quad ``implies''
+        \item $\not\implies$ \quad ``does not imply''
+        \item $\iff$ \quad ``if and only if'' \textcolor{red}{(iff)}
+        \item $\neg$ \quad ``not''
+    \end{itemize}
+\end{frame}
+
+
+
+
+\end{document}

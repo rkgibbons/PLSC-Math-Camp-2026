@@ -1,0 +1,420 @@
+\documentclass[10pt]{beamer}
+\usepackage{csquotes}% Recommended
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=10pt plus1pt] {parskip}
+
+
+%Information to be included in the title page:
+\title{A Functional Overview of Integration}
+\author{UChicago Political Science Math Camp}
+\institute{Ryan Gibbons \& Luke Cain}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Some Thoughts On Integration}
+    \begin{itemize}
+        \item Integration is the inverse of derivation, but can be conceptually more challenging
+        \item Integral rules are often more difficult than derivative rules
+        \item This session is more concerned with how to understand integrals than with how to compute them (i.e., intuition over execution)
+        \item ``Spaghetti at the wall" pedagogical approach
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Expectation}
+    When calculating expected outcomes, we employ the following formula:
+
+    \[E[u] = \sum_i \Pr[i] \cdot u_i\]
+
+    The \textit{utility} of an event, then, is its value times its probability. \\
+
+    \vspace{.5cm}
+
+    Let $Heads = 1$ and $Tails = 0$. What is the expected value of a coin toss?
+\end{frame}
+
+\begin{frame}{More Expectation}
+    We could model the expected roll of a D4 as
+
+    \[\sum_i \Pr[i] \cdot u_i = \frac{1}{4} \cdot 1 + \frac{1}{4} \cdot 2 + \frac{1}{4} \cdot 3 + \frac{1}{4} \cdot 4 = 2.5\]
+
+    What about a D6?\\
+    \vspace{.5cm}
+    \pause
+    A D10? \\
+    \vspace{.5cm}
+    \pause
+    A D100?
+\end{frame}
+
+\begin{frame}{Something Weird About Probability}
+    What if we keep finding larger (fair) dice? What is $\lim_{i \to \infty}\Pr[x = i]$? \\
+
+    \vspace{.5cm}
+    \pause
+    Assume that every outcome is equally likely (uniform distribution). We can evaluate:
+
+    \[\sum_i^\infty \Pr[i] \cdot u_i = \sum_i^\infty \frac{1}{\infty} u_i\]
+
+    And our summation and series rules lend that
+
+    \[\implies \frac{1}{\infty} \cdot \sum_i^\infty u^i \implies \text{undefined}\]
+
+    Something's not right here...
+    
+\end{frame}
+
+\begin{frame}{A Qualifier}
+    Let's take away the dice's fairness add a new condition: \\
+
+    \vspace{.5cm}
+
+    \textit{Every face of the dice has a unique value in $[-b,b]$} \\
+
+    \vspace{.5cm}
+
+    Then, as $n_{face} \to \infty$, every $x \in [-b,b]$ has a corresponding dice roll.
+
+\end{frame}
+
+\begin{frame}{Calculus and Infinity}
+
+Calculus fundamentally solves the following contradictions: \\
+\vspace{1cm}
+\begin{itemize}
+
+    \item Derivation solved for the rate of change of a function as $\Delta x \to 0$, such that $\frac{rise}{run} \to \infty$.
+    
+    \item Integration solves for the sum of an infinite number of infinitely small segments, where the size of each approaches $0$ such that $\sum_i \to 0$.
+
+\end{itemize}
+
+\textcolor{red}{In most cases, $\frac{rise}{run} \neq \infty$ and $\sum_i \neq 0$.}
+
+\end{frame}
+
+\begin{frame}{A Different Approach to Intuition}
+
+    Say we want to measure the area bounded by some function(s), or the \textbf{area beneath the curve}:
+
+    \begin{enumerate}
+        \item If all functions are linear, we can use geometric formulas (extensions of $A = bh$) to evaluate
+        \item If \underline{even one} function is non-linear\footnote{At least, non-circular, although the area of a circle is derived from calculus anyways}, then standard geometry can only approximate
+    \end{enumerate}
+
+\end{frame}
+
+\begin{frame}{Integration From Approximation}
+    We can approximate the area under a curve by splitting the area into a series of rectangles, such that $A = \sum_i bh_i$ \\
+
+    \vspace{.5cm}
+
+    With very large rectangles (i.e., very large $b$-values), this creates a lot of error. \textcolor{purple}{\href{https://www.desmos.com/calculator/fgqivwklhm}{But what happens}} as we add more rectangles, and shrink the size of each? \\
+
+    \[A=\sum_i bh_i \quad \quad \implies \quad \quad b \to 0, i \to \infty\]
+
+    \textcolor{red}{How does this reflect our derivation definition?}
+\end{frame}
+
+\begin{frame}{Notation}
+    Integrate \textcolor{blue}{$f(x)$} with respect to \textcolor{red}{$x$} $\rightarrow$ What is the sum of every \textcolor{blue}{$f(x)$} over every possible \textcolor{red}{$x$}? \\
+
+    \vspace{.5cm}
+
+    We denote this as
+
+    \[\int f(x) dx\]
+
+    We call this an \textbf{indefinite integral}
+\end{frame}
+
+\begin{frame}{A New Limit Definition}
+    \[\int f(x) dx = \lim_{b \to 0} \sum_i^{\frac{1}{b}}b f(x_i)\]
+
+\end{frame}
+
+\begin{frame}{Integration vs Derivation}
+    \begin{itemize}
+        \item The integral of $f(x) dx$ represents the sum of all $f$'s, such that if $f$ represents a rate of change, then $\int f(x) dx$ represents the \textbf{change that occurred...}
+        \item Think: what function's derivative returns $f(x)$? That function represents $\int f(x)dx$
+    \end{itemize}
+
+To borrow again from Physics:
+
+\[\text{\textbf{Jerk}} \Rightarrow \int{dt} = \text{\textbf{Acceleration}} \Rightarrow \int{dt} = \text{\textbf{Speed}} \Rightarrow \int dt = \text{\textbf{Position}}\]
+
+\end{frame}
+
+\begin{frame}{Definite vs. Indefinite Integrals}
+    Often, we only want to evaluate the integral of a function over some specific domain. To integrate $f(x)$ w.r.t $x$ over the domain $[a,b]$, we write the \textbf{definite integral}
+
+    \[\int_a^b f(x) dx\]
+
+    \textcolor{red}{An indefinite integral often produces a function. A definite integral almost always returns a number (or function independent of $x$).}
+\end{frame}
+
+\begin{frame}{FTOC}
+
+\[\int_a^b f'(x)dx = f(b) - f(a)\]
+
+This yields two truths:
+
+\begin{enumerate}
+    \item The integral is the inverse of the derivative (the integral of a function's derivative is just the function)
+    \item For some defined domain $[a,b]$, the value of the integral over that domain is $\int f(b)dx - \int f(a)dx$
+\end{enumerate}
+
+\end{frame}
+
+\begin{frame}{FTOC and Indefinite Integrals}
+    Let's reiterate an important point here: \\
+
+    \vspace{.5cm}
+
+    If we denote the indefinite integral $\int f(x)dx = F$, then $\int_a^b f(x)dx = F(b) - F(a)$ \\
+
+    \vspace{.5cm}
+
+    Then, to solve $\int_a^b f(x)dx$, we evaluate:
+
+    \[\int f(x) dx = F(x) \quad \implies \quad \int_a^b f(x)dx = F(x) \bigg|_{x=a}^{x=b}\]
+\end{frame}
+
+\begin{frame}
+    \thispagestyle{empty}
+    \vspace{1cm}
+    \begin{center}
+        \begin{Huge}
+            How Do We Actually Do This?
+        \end{Huge}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}
+    \begin{center}
+        \includegraphics[width=5cm]{newton.jpeg}
+    \end{center}
+\end{frame}
+
+\begin{frame}{The Good Stuff}
+    We can use a series of rules to integrate a function in its general form \textit{\underline{for any value of $x$}}:
+
+    \[f(x) \implies \text{[RULE]} \implies \int f(x) dx\]
+
+    Note that now, our indefinite integral is itself another function of $x$.
+\end{frame}
+
+\begin{frame}{The Sum Rule}
+    For all integrals:
+
+    \[\int \Big[f(x) + g(x)\Big] dx  = \int f(x) dx + \int g(x) dx\]
+
+    For definite integrals such that $a \leq b \leq c$:
+
+    \[\int_a^c f(x) dx = \int_a^b f(x) dx + \int_b^c f(x)dx\]
+\end{frame}
+
+\begin{frame}{The Power Rule, Backwards}
+    Recall the derivative power rule:
+
+    \[\frac{d}{dx} x^k = k \cdot x^{k-1}\]
+
+    Then, if $\int f'(x) dx = f(x)$, what function would, when derived, produce ours? \pause
+
+    \[\int x^k dx = \frac{x^{k+1}}{k+1}\]
+
+    plus one little thing...
+\end{frame}
+
+\begin{frame}{Remember Our Constants?}
+    \begin{enumerate}
+        \item We know that the derivative of a constant is $0$, such that $\frac{d}{dx} c = 0 \; \forall \; c \in \mathbb{R}$
+        \item If integration ``reverts" a derivative, then it must account for any constant terms zero-d out in derivation
+        \item We resolve this as follows:
+
+        \[\int x^k dx = \frac{x^{k+1}}{k+1} + c\]
+
+         \textit{even though we don't know what $c$ actually is.}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{A Power Rule Corollary (Reversed)}
+    \begin{enumerate}
+        \item We know that $\int x^k dx = \frac{1}{k+1} x^{k + 1}$ (\textbf{Power Rule}) and that $\int [f(x) + g(x)] dx = \int f(x) dx + \int g(x) dx$ (\textbf{Sum Rule})
+        \item We also know that for a constant $\ell$, $\ell \cdot n = \sum_1^\ell n$, or $n$ added $\ell$ times. 
+        \item Then, the integral is the sum of $x^k$ added up $\ell$ times:
+        \[\int \bigg[ \ell \cdot x^k\bigg] dx = \sum_1^\ell \int x^k dx\]
+        \item We know that $\sum_1^n x = nx$, so
+        \[\sum_1^\ell \int x^k dx = \ell \cdot \int x^k dx \quad \implies \quad \int \bigg[ \ell \cdot x^k \bigg] dx = \ell \cdot \frac{1}{k+1} \cdot x^{k + 1}\]
+    \end{enumerate}
+
+    $\implies$  \textbf{Coefficients}: The coefficient of a term is kept as a coefficient of that term's integral (i.e., multiply $\frac{1}{k+1}$ by the coefficient as well)
+\end{frame}
+
+\begin{frame}{Quick Note on Constants}
+    Recall that a constant $m$ can be represented as $m \cdot x^0$. Then,
+
+    \[\int mdx = \int m \cdot x^0 dx\]
+    \[\implies m \cdot \int x^0 dx\]
+    \[\implies m \cdot \frac{x^{0+1}}{0+1} + c= m \cdot \frac{x^1}{1} + c\]
+    
+    \[\therefore \int m dx = mx + c\]
+\end{frame}
+
+\begin{frame}{Some Examples}
+    Let's try some simple examples:
+
+    \[\int x^2 + 2x^3 dx\] \pause
+
+    \[\int 2x^3 + \frac{1}{2} x^4  dx \] \pause
+
+    \[\int 3 + \sqrt[3]{x} dx\] \pause
+
+    \[\int x^{-3} + x^{-2} + x^{-1} dx\] 
+\end{frame}
+
+\begin{frame}{Closing Some Subtle Foreshadowing}
+    The power rule doesn't work for $f(x) = x^{-1} = \frac{1}{x}$, as it solves:
+
+    \[\int x^{-1} dx = \frac{1}{-1+1} x^{-1 + 1} = - \frac{x^0}{0}\]
+
+    Thankfully, our natural logarithm solves this for us:
+
+    \[\int \frac{1}{x} dx = \ln(x) + c\]
+\end{frame}
+
+\begin{frame}{Integrating Exponentials}
+    We have a specific rule for integrating exponentials and logarithms:
+
+    \[\int a^x dx  = \frac{a^x}{\ln a} + c\]
+
+    \[\int \log_b x dx = \frac{x}{\ln b} (\ln b - 1) + c\]
+\end{frame}
+
+\begin{frame}{Definite Integration}
+    So far, we've expressed $F(x)$ for every $f(x)$, both as functions of $x$, as \textit{indefinite integrals}. When we add bounds of integration, we simply use FTOC:
+
+    \[\int_a^b f(x)dx = F(b) - F(a)\]
+
+    \[\int_2^4 x^3 dx \quad = \quad \int x^3 dx \bigg|_2^4 \]
+
+    \[\implies \frac{x^4}{4} + c \;\bigg|_2^4\]
+
+    But, we don't know $c$...
+\end{frame}
+
+\begin{frame}{$c$ you later}
+    There's a handy trick with definite integrals:
+
+    \[\int f(x) dx = F(x) + c\]
+    \[\implies \int_a^b f(x) dx = F(b) + c - \Big( F(a) + c\Big)\]
+    \[\implies \int_a^b f(x) dx = F(b) - F(a)\]
+
+    For definite integrals, we subtract $c-c$ and can therefore exclude it. So,
+
+    \[\frac{x^4}{4} + c \; \bigg|_2^4 \quad = \quad \frac{4^4}{4} - \frac{2^4}{4} \quad = 16\]
+\end{frame}
+
+\begin{frame}{More Examples}
+    \[\int_0^2 x^3 + 2x^3 dx\] \pause
+
+    \[\int_2^6 \frac{1}{2} x^2 + 4 dx\] \pause 
+
+    \[\int_0^b \sqrt{x} + \sqrt{2} dx\] \pause
+
+    \[\int_{a}^{2} \frac{1}{x^2} dx\] \pause
+\end{frame}
+
+\begin{frame}{A Turn For The Worst}
+    Two of our fundamental derivative rules -- the \textbf{chain rule} and the \textbf{product rule} -- are a bit more complicated to invert:
+
+    \[\frac{d}{dx}f(u) = f'(u) \cdot u'\]
+
+    \[\implies F(u) = \int f(u) \cdot u du...\]
+
+    There's not a clear solution here
+\end{frame}
+
+\begin{frame}{U-Substitution}
+    The inverse of the Chain Rule is called \textbf{integration by substitution}, or \textbf{``u-sub"}, and works as follows:
+
+    \begin{enumerate}
+        \item Express the integral in the form
+        \[\int f\Big(g(x)\Big) g'(x) dx\]
+        \item Assign $g(x) = u$ such that the integral can be rewritten:
+        \[ \int f(u) du\]
+        \item Evaluate the integral:
+        \[\int f(u) du = F(u)\]
+        \item Substitute back $u = g(x)$:
+        \[\int f\Big(g(x)\Big) g'(x) dx = F\Big(g(x)\Big)\]
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Integration By Parts}
+    \textbf{Integration by parts} inverts the product rule. We will not cover it in math camp, but you should be aware of the concept and ready to learn its process.
+\end{frame}
+
+\begin{frame}{Area of a Circle}
+    We know that $a = \pi r^2$, but the formal definition of $\pi$ is only $\pi = \frac{c}{d}$. \\
+
+    \vspace{.5cm}
+
+    Using \textit{only} this definition for $\pi$, how might we calculate the area of a circle?
+\end{frame}
+
+\begin{frame}{The Math}
+    A circle can be divided into ``slices," and each slide can be approximated by a sum of triangles: $a_{slice} = \sum bh$. The error of these triangles approaches zero as we add more and more triangles... \\
+    Imagine we take the sum of the area of an infinite number of triangles, rotated around the center of a circle. Then, since our triangle area is $a = \frac{1}{2}bh$, we have
+    \[a_{circle} = \sum_i^\infty \frac{1}{i} \cdot \frac{1}{2}h\]
+    The ``height" in this case is the radius of the circle. Now we have:
+    \[\sum_i^\infty \frac{1}{i}\frac{1}{2} r = \int_{circle}\frac{1}{2}rdi = \frac{1}{2}r \cdot \int_{circle} di\]
+    We know that $\int di = i$, so we just need to choose our bounds. We are integrating over the total distance of the circumference, which we know to be $2r \cdot \pi$. So, we can place the bounds:
+    \[\int_0^{2r \cdot \pi}\frac{1}{2}rdi = \frac{1}{2}ri \; \bigg|_0^{2r \cdot \pi} = \frac{1}{2}r (2\pi r) - 0 = \pi r^2\]
+\end{frame}
+
+\begin{frame}{Improper Integrals}
+    For definite integrals which do not converge to $f(x) = a$, or for any asymmetric integrals whereby $f(x) = \pm \infty$ for $x \in \mathbb{R}$, we call that integral \textbf{improper.} \\
+
+    \vspace{.5cm}
+
+    This can either result in a finite value, such as $\int_{-\infty}^{\infty} \frac{1}{1+x^2}dx$, or an undefined value, such as $\int_{-\infty}^{\infty} \frac{1}{x} dx$
+\end{frame}
+
+\begin{frame}{Gabriel's Horn}
+    Imagine a horn formed by the function $f = \frac{1}{x}$ for the domain $x \in [1, \infty)$
+
+    What is its volume? What is its surface area?
+\end{frame}
+
+\begin{frame}{Horn Volume}
+    We know that $V = a \cdot h$; in this case we can set $h = \infty$ and $a = \pi r(x)^2 =\frac{\pi}{x^2}$. The volume is then the sum of this area over every possible height:
+
+    \[V = \int_1^\infty \frac{\pi}{x^2} dx = - \frac{\pi}{x} \bigg|_1^{\infty} \]
+
+    \[V = \pi\]
+
+    The volume of the horn is finite.
+\end{frame}
+
+\begin{frame}{Horn Surface Area}
+    We know that surface area can be calculated as $s = c \cdot h$. In this case, we set $h = \infty$ and $c = \pi 2r = \frac{2\pi}{x}$. The surface area is then the sum of this circumference over every possible diameter:
+
+    \[s = \int_1^{\infty} \frac{2 \pi}{x} dx = 2\pi \cdot \ln(x) \bigg|_1^{\infty}\]
+
+    \[s = \infty\]
+
+The horn has finite volume but infinite surface area. \textit{You could fill the inside with paint, but never fully paint the outside.}
+\end{frame}
+
+
+
+
+\end{document}

@@ -1,0 +1,337 @@
+\documentclass[10pt]{beamer}
+\usepackage{csquotes}% Recommended
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=10pt plus1pt] {parskip}
+\usepackage{multicol}
+\usepackage{multirow}
+
+%Information to be included in the title page:
+\title{Discrete Probability}
+\author{UChicago Political Science Math Camp}
+\institute{Ryan Gibbons \& Luke Cain}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+
+\begin{frame}
+\begin{center}
+    \includegraphics[width = 6cm]{bayesian (1).jpg}
+\end{center}    
+\end{frame}
+
+\begin{frame}{Probability}
+
+Probability is the \textbf{likelihood of an event occurring} \\
+
+\vspace{1cm}
+
+We denote the probability of an event $A$ as a real number between 0 and 1:
+
+\[\Pr[A] \in [0,1]\]
+
+\end{frame}
+
+
+\begin{frame}{Discrete vs. Continuous Probability}
+    There are two ``categories" in studying probability:
+    \begin{enumerate}
+        \item \textbf{Discrete} probability, where there are $n \in \mathbb{N}$ possible outcomes or events (``What number will this dice roll?")
+        \item \textbf{Continuous} probability, where there are $n \to \infty$ possible outcomes or events (``How far will I throw this dice?")
+    \end{enumerate}
+    This refers to the \textit{measurement}, not the \textit{probability} itself
+\end{frame}
+
+\begin{frame}{Axioms of Probability}
+    There are three basic axioms when working with probability:
+    \begin{enumerate}
+        \item \[\forall\; a \in A, \Pr[a] \in \mathbb{R}_+ \implies \Pr[a] \geq 0\]
+
+        \item \[\forall A,\; \sum_{a \in A} \Pr[a] = 1\]
+
+        \item \[a_i \cap a_{-i} = \emptyset \;\forall \;a_i, a_{-i} \iff \Pr\bigg[ \bigcup_{i=1}^k a_i\bigg] = \sum_{i=1}^k \Pr[a_i]\]
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Applying Axioms}
+    Show these axioms for each of the following discrete probabilities:
+
+    \begin{enumerate}
+        \item A fair two-sided coin
+        \item An unfair six-sided dice
+        \item Tomorrow's temperature (in whole degrees, ok to place bounds)
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Basic Probability}
+    Let there be be an event with equally likely outcomes $A_{i \in n} \in \{S\}$. Then, the probability that a draw yields an outcome meeting some condition $ Q$ is:
+
+    \[\Pr[a_i \rightarrow Q] = \frac{|a_i \rightarrow Q|}{|S|}\]
+
+    \textit{Count of ``target" outcomes over count of total}
+\end{frame}
+
+\begin{frame}{Rolling a Dice}
+    Suppose we roll a (fair) 100-sided dice to recover $a \in \{x \in \mathbb{N} : 1 \leq x \leq 100\}$. What is the probability of each outcome?
+
+    \begin{enumerate}
+        \item $a = 15$
+        \item $a \leq 50$
+        \item $a < 50$
+        \item $a$ is even
+        \item $\frac{a}{3} \in \mathbb{N}$
+        \item $\frac{a}{7} \in \mathbb{Q}$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Combinatorics}
+    To determine $|S|$, we often rely on combinatorial mathematics, and use the formula:
+
+    \[C = \begin{pmatrix}
+        n \\
+        a
+    \end{pmatrix}= \frac{n!}{a!(n-a)!} \]
+
+    Where
+    \begin{itemize}
+        \item $C$ = number of unique combinations (outcomes)
+        \item $n$ = number of objects in a set
+        \item $a$ = number of objects chosen from the set
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Relaxed Assumptions}
+    Of course, not all events are ``fairly" distributed:
+
+    \begin{itemize}
+        \item A cat landing on its feet
+        \item An authoritarian election (mechanism design)
+        \item Getting pulled over while speeding
+    \end{itemize}
+
+    Often, we can observe the outcomes, but must estimate its true probability
+\end{frame}
+
+
+\begin{frame}{Independence}
+    Two events are said to be \textbf{independent} or \textbf{disjoint} if the probability of one is not tied to the probability of the other:
+
+    \begin{itemize}
+        \item Metra running late and the White Sox score
+        \item Math background and field seminar grades
+    \end{itemize}
+\pause
+    Two events are \textbf{dependent} if the expected outcome of one \textit{is} affected by the outcome of the other:
+
+    \begin{itemize}
+        \item Delays on the 171 and delays on the 172
+        \item Numbered street and apartment rent
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Conditional Probability}
+    Many events are contingent on prerequisite outcomes. The \textbf{conditional probability} of an outcome $A$ given an event $B$ can be expressed as:
+
+    \[\Pr[A \; | \; B] = \frac{\Pr[ A \cap B]}{\Pr[B]}\]
+\end{frame}
+
+\begin{frame}{A Note on Dependency}
+    A dependent relationship can exist in different mechanisms:
+
+    \begin{itemize}
+        \item \textbf{Correlational}: The outcome of one event does not directly impact another, but signals underlying conditions
+        \item \textbf{Causal}: The outcome of one event is causally related to the outcome of another
+    \end{itemize}
+
+    \textit{For now, our quantitative mechanisms are the same for each.}
+\end{frame}
+
+\begin{frame}{Replacement}
+    One common example of independence versus dependence is whether or not an outcome is ``replaced" after a random draw:
+
+    \begin{itemize}
+        \item A card is drawn from a deck, then shuffled back in $\rightarrow$ \textbf{independent}
+        \item A card is drawn from a deck, then discarded $\rightarrow$ \textbf{dependent}
+    \end{itemize}
+\vspace{.5cm}
+    Why might this be?
+\end{frame}
+
+\begin{frame}{I.I.D.}
+    Independent and identically distributed:
+
+\begin{itemize}
+    \item \underline{Independent}: The expected outcome of the $n$th event is not impacted by any $n-k$th outcome.
+    \item \underline{Identically Distributed}: Every draw is identical, and occurs with full replacement
+\end{itemize}
+\end{frame}
+
+
+
+
+\begin{frame}{Joint Probability}
+    For two independent and disjoint events $A$ and $B$, their \textbf{joint probabilities} are as follows:
+
+    \[\Pr[A \cap B] = \Pr[A] \cdot \Pr[B]\]
+
+    \[\Pr[A \cup B] = \Pr[A] + \Pr[B]\]
+
+    How might this change for non-disjoint events? \pause
+
+    \[\implies \Pr[A \cup B] = \Pr[A \cup \neg B] + \Pr[\neg A \cup B] + \Pr[A \cap B]\]
+    
+\end{frame}
+
+\begin{frame}{Joint Probability Example}
+We want to evaluate each quadrant for $\Pr[i \cap j]$:
+    \begin{table}[H]
+\centering
+\renewcommand{\arraystretch}{1.5} % Adjust row height
+\setlength{\tabcolsep}{12pt} % Adjust column width
+\begin{tabular}{cccc}
+                    &                        & \multicolumn{2}{c}{$j$}                              \\
+                    &                        & Sunny                        & Cloudy                        \\ \cline{3-4} 
+\multirow{1}{*}{$i$} & \multicolumn{1}{c|}{Rainy} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} \\ \cline{3-4} 
+                    & \multicolumn{1}{c|}{Dry} & \multicolumn{1}{c|}{} & \multicolumn{1}{c|}{} \\ \cline{3-4} 
+\end{tabular}
+\end{table}
+\end{frame}
+
+
+\begin{frame}{Expanding Conditional Probability}
+    
+\end{frame}
+
+\begin{frame}{Suppose...}
+    \begin{itemize}
+        \item 
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Bayesian Statistics}
+    Suppose we know the probability of $A$ given $B$, but we want to know the probability of $B$ given $A$. We can use \textbf{Bayes' Rule}:
+
+    \[\Pr[A \; | \; B] = \frac{\Pr[B \; | \; A] \cdot \Pr[A]}{\Pr[B]}\]
+\end{frame}
+
+\begin{frame}{Random Variables}
+    A random variable is a function $X$ such that there exists a real number for every $s \in S$:
+
+    \[X: S \rightarrow \mathbb{R}\]
+
+    There is then some non-deterministic probability $\Pr[X(s) = x] \in [0, 1]$ for every event $s$.
+\end{frame}
+
+\begin{frame}{PMFs}
+    For a discrete random variable $X$, we can model a \textbf{probability mass function}:
+
+    \[\text{PMF} \equiv f(x) = \Pr[X = x]\]
+
+    This models the likelihood of any given outcome of $x \in S$. \\
+
+    \vspace{.5cm}
+    What do our probability axioms imply about PMFs?
+\end{frame}
+
+\begin{frame}{PMF examples}
+    How might we construct the PMFs of the following?
+
+    \begin{itemize}
+        \item A fair, six-sided dice
+        \item An unfair six-sided dice (twice as likely to land on 6)
+        \item A nation's global ranking in GDP (assume $n = 200$ for simplicity
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{CDFs}
+    We often want to represent the probability that a random variable is larger or smaller than some threshold. For this, we can model a \textbf{cumulative distribution function}:
+
+    \[\text{CDF} \equiv F(x) = \Pr[X \leq x] = \sum_{i \leq x} \Pr[i]\]
+
+    What do our probability axioms imply about discrete CDFs? How might we solve $\Pr[X \geq x]?$
+\end{frame}
+
+\begin{frame}{CDF examples}
+    How might we construct CDFs of the following?
+
+    \begin{itemize}
+        \item A fair dice rolling at least a 3
+        \item A nation being in the top $n$th percentile globally of GDP (assume $N = 200$ for simplicity)
+        \item The ``amount" of persuasion voters need to choose candidate $A$ in a two-race, majoritarian election
+        
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Uniform Distribution}
+    The \textbf{uniform distribution} models every outcome as equally likely:
+
+    \[f(x) = \Pr[X = x] = \frac{1}{|X|} \]
+
+    Note that $f(x)$ is a \textit{constant function} -- what does this imply?
+\end{frame}
+
+\begin{frame}{Another Important Discrete Distribution}
+    Suppose you flip a fair coin twice. What is the probability of recovering $H$ at least once? \\
+
+    \vspace{.5cm}
+
+    Suppose you roll a fair dice six times. What is the probability of recovering $6$ at least once? \\
+
+\end{frame}
+
+\begin{frame}{A Closing Derivation}
+    Let each draw of an event consist of $n$ equally likely outcomes across $N$ alternatives. What is the probability of drawing some outcome $n \equiv Q$ over the period of draws $1, 2, ...,t$ for a condition $Q$?
+\end{frame}
+
+\begin{frame}{The Binomial Distribution}
+To model the likelihood of an event of probability $p$ occurring within $n$ i.i.d. trials, we can use the \textbf{binomial distribution}:
+
+    \[B(n,p) = \begin{pmatrix}
+        n \\ k
+    \end{pmatrix} p^k q^{n-k}\]
+
+    Where $\begin{pmatrix}
+        n \\k
+    \end{pmatrix}$ is the \textbf{binomial coefficient} for $k$ outcomes over $n$ trials
+\end{frame}
+
+\begin{frame}{Expectation (A Minor Recap)}
+    The \textbf{expected value} of a random variable is the sum of its possible outcome values weighted by the probability that value occurs:
+
+    \[E[X] = \sum_x \Pr[x] \cdot x\]
+
+    With discrete RVs, this summation is simple and well-defined, even if not always meaningful
+\end{frame}
+
+\begin{frame}{Expectation Examples}
+    Calculate the expected value of the following:
+    \begin{enumerate}
+        \item A fair six-sided dice roll
+        \item The sum of two fair six-sided dice rolls
+        \item The \textbf{maximal value} of two fair dice rolls
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Extending Expectation}
+    Let's evaluate this. Google ``Roll Two Dice", and record 10 iterated outcomes each.\\ \pause
+\vspace{1cm}
+What do we start to see when plotting these outcomes?
+    
+\end{frame}
+
+\begin{frame}{And More So, Large $N$}
+    What if we could simulate a more sophisticated result -- the maximal value of three dice rolls?
+\end{frame}
+
+
+
+
+\end{document}

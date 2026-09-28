@@ -1,0 +1,194 @@
+\documentclass[10pt]{beamer}
+\usepackage{csquotes}% Recommended
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage[skip=10pt plus1pt] {parskip}
+\usepackage{multicol}
+\usepackage{multirow}
+
+%Information to be included in the title page:
+\title{Continuous Probability}
+\author{UChicago Political Science Math Camp}
+\institute{Ryan Gibbons \& Luke Cain}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}{Continuous Probability}
+
+We can expand our understanding of probability to include infinite outcomes \\
+
+\vspace{.5cm}
+
+We know that a random variable can model discrete outcomes: i.e., flipping a coin, rolling a dice \\
+
+\vspace{.5cm}
+
+What if we took a dice with one face for every real number $\mathbb{R} \in [0,1]$?
+    
+\end{frame}
+
+\begin{frame}{PDFs}
+    A PDF extends a PMF to include a continuous domain, such that
+
+    \[f(x) = \Pr[X=x]\]
+
+    Where $f$ returns a real number for every input of $x$. A PDF returns the probability density of a certain outcome of a random variable.
+\end{frame}
+
+\begin{frame}{Probability Axioms}
+    Recall our probability axioms:
+
+    \begin{enumerate}
+        \item $\Pr[a] \geq 0 \; \forall \; a \in A$
+        \item $\sum_{a \in A} \Pr[a] = 1$
+        \item For disjoint outcomes, $\Pr[\bigcup_{i=1}^k a_i] = \sum_{i=1}^k \Pr[a_i]$
+    \end{enumerate}
+
+    How might we apply these to continuous probability distributions?
+\end{frame}
+
+\begin{frame}{PDF Warnings}
+    A few things become questionable with PDFs:
+    \begin{enumerate}
+        \item PDFs do not need to be continuous nor differentiable.
+        \item PDFs can be defined for negative inputs (RV outcomes), just not negative outputs (probabilities)
+        \item PDFs do not need to be injective nor surjective
+    \end{enumerate}
+
+    \textit{Conceptualize: what is this PDF telling me?}
+\end{frame}
+
+\begin{frame}{PDF Bounds}
+    It's not uncommon to see a PDF take a form such as:
+
+    \[f(x) = 2x\]
+
+    But, the condition $\int_{\mathbb{R}} f(x)dx = 1$ still must hold. We then create \textbf{bounds} which allow this: \pause
+
+    \[\int_a^b 2xdx = 1 \implies x^2 \bigg|_a^b = 1\]
+    \[\implies b^2 - a^2 = 1 \implies b = \sqrt{a^2+1} \]
+
+    More generally, we must choose $a,b$ such that $F(b)-F(a) = 1$.
+\end{frame}
+
+\begin{frame}{CDFs}
+    Say for some PDF $f(X)$, we want to know the likelihood that $x$ is larger than some $X$. We can use the \textbf{cumulative distribution function}:
+
+    \[F(x) = \Pr[X \leq x] = \int_{-\infty}^X f(s) ds\]
+
+    We use FTOC to obtain this: $\int_a^b f(x)dx = F(b) - F(a)$, for $a = - \infty$, and some arbitrary $s$
+\end{frame}
+
+\begin{frame}{Expanded CDFs}
+    This FTOC definition allows us to specify the probability of an RV falling within a given range. For example,
+
+    \[\Pr[a < x < b] = \int_a^b f(x)dx\] \pause
+
+    We can then use our \textbf{disjoint probability axiom} to combine multiple domains:
+
+    \[\Pr[x \in [a,b] \text{ OR } [c,d]] = \int_a^b f(x)dx + \int_c^d f(x)dx\]
+\end{frame}
+
+\begin{frame}{CDF Foundations}
+    What do our first two axioms imply about continuous CDFs? \pause \\
+\vspace{1cm}
+    \begin{itemize}
+        \item Weakly increasing: $F(x) \ge F(x') \; \forall \; x > x'$
+        \item Comprehensive: $F(\infty) = 1$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Joint Distributions}
+    Joint distributions are an easy extension from discrete probability:
+
+    \[p(x,y) = P(X = x, Y = y)\]
+
+    \[\implies f(x,y); P((X,Y) \in A) = \int \int_A f(x,y)dxdy\]
+
+    \textit{Probability represented by volume under the joint PDF}
+\end{frame}
+
+\begin{frame}{Marginal Distributions}
+    A \textbf{marginal distribution}, denoted $f_X(x)$, reflects the distribution of one variable, holding the other variable(s) constant. \\
+
+    \vspace{1cm}
+
+    Then, we can represent by integrating \textcolor{red}{w.r.t. the other variable!}
+
+    \[f_X(x) = \int_{-\infty}^{\infty} f(x,y) dy\]
+    \[f_Y(x) = \int_{-\infty}^\infty f(x,y) dx\]
+
+    \[\]
+\end{frame}
+
+\begin{frame}{Joint PDFs}
+    You cannot always derive a joint PDF, but: if two events are independent, their joint PDF is the product of their marginal PDFs \\
+
+    \vspace{1cm}
+
+    Example: Let $f(x) = e^{-x}$ and $f(y) = N(\bar{x},\sigma)$. What is $f(x,y)$?
+\end{frame}
+
+\begin{frame}{Conditional Probability}
+    To evaluate the \textbf{conditional probability} of a continuous RV, we hold the other variable constant:
+
+    \[\Pr[y | x] = f_{y|x} (y|x) = \frac{f(x,y)}{f_X(x)}\]
+\end{frame}
+
+\begin{frame}{Uniform Distribution}
+    The uniform distribution takes a slightly different form for continuous probability:
+
+    \[f(x) = \frac{1}{b-a}\]
+
+    for uniformity over the domain $[a,b]$.
+\end{frame}
+
+\begin{frame}{Expanding Expectation}
+
+Recall that for a discrete RV, $E[X] = \sum_{x \in X} \Pr[x] \cdot x$ \\
+
+\vspace{.5cm}
+
+How can we expand this to an infinite cardinality of $x$? \pause \textit{Would we need, perhaps, an infinite sum?} \pause
+
+\[E[X] = \int_{-\infty}^{\infty} x f(x) dx\]
+
+\textcolor{gray}{\textit{Unfortunately, you can't isolate out $\int_{\mathbb{R}} f(x)dx = 1$ here}}
+\end{frame}
+
+\begin{frame}{An Integration Corollary:}
+    The sum rule lends that
+
+    \[\int_a^c f(x)dx = \int_a^b f(x) dx + \int_b^c f(x) dx\]
+
+    Suppose $f(x)$ is only defined on $[a,b]$ and therefore takes a value of $0$ for all other inputs. Then,
+
+    \[\int_a^c f(x)dx = \int_a^b f(x)dx + \int_b^c 0dx\]
+
+    \[\implies \int_a^b f(x)dx\]
+
+    \pause \textcolor{red}{Much of probability calls for infinite integrals, but we can often isolate a well-defined domain.}
+\end{frame}
+
+\begin{frame}{Median}
+    The median defines a value such that half of the mass is above that threshold, and half is below. \\
+
+    \vspace{.5cm}
+
+    How could we apply that to continuous calculus? \pause
+
+    \[\text{Median}(X) \equiv x \; \text{ s.t. } \; \int^x f(X)dX = \frac{1}{2}\]
+\end{frame}
+
+
+
+
+
+\end{document}

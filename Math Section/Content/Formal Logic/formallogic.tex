@@ -1,0 +1,379 @@
+
+\documentclass[10pt]{beamer}
+
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{centernot}
+\usepackage{verbatim}
+\usepackage[skip=10pt plus1pt] {parskip}
+
+%Information to be included in the title page:
+\title{Formal Logic}
+\author{UChicago Political Science Math Camp}
+\institute{Ryan Gibbons \& Luke Cain}
+\date{2025}
+
+\begin{document}
+
+\begin{frame}
+\begin{center}
+    \includegraphics[width=10cm]{/Users/ryangibbons/Downloads/IMG_4235.jpeg}
+\end{center}
+\end{frame}
+
+\frame{\titlepage}
+
+
+\begin{frame}{A Justification of Social Science}
+    \begin{itemize}
+        \item Social science as an \emph{explanatory pursuit}
+        \item Evidentiary collection and analysis provides a \emph{means} to positive explanations
+        \item Unexplained phenomena are unanswered questions
+    \end{itemize}
+\vspace{.7cm}
+A central motivation: we use empirical information to produce theoretical insights, and we want our theoretical insights to be \emph{maximally applicable} while retaining accuracy
+\end{frame}
+
+\begin{frame}{Why Proofs?}
+    It is almost always easier to definitively observe a phenomenon than it is to definitively explain it.
+
+    If we cannot definitively explain it, we have not answered the important question (normative argument).
+
+    If we cannot definitively explain it, we cannot rule out other potential mechanisms (logical argument).
+\end{frame}
+
+\begin{frame}
+    \begin{center}
+ \includegraphics[width=10cm]{/Users/ryangibbons/Downloads/theorem.png}
+    \end{center}
+\end{frame}
+
+
+\begin{frame}{The Structure of Formal Logic}
+    Formal logic largely focuses on three translations:
+    \begin{enumerate}
+        \item Empirical observations into informational inputs
+        \item Informational inputs into theoretical mechanisms
+        \item Theoretical mechanisms into applied inference and/or prediction
+    \end{enumerate}
+
+    We want to maximize what we can gleam from each of these three translations. 
+\end{frame}
+
+
+\begin{frame}{Foundational Notation}
+    Formal logic requires formal notation, even beyond our set-building language. A brief overview:
+
+    \begin{itemize}
+        \item $\implies$ \quad ``implies''
+        \item $\iff$ \quad ``if and only if'' \textcolor{red}{(iff)}
+        \item $\neg$ \quad ``not''
+        \item $\centernot\implies$ \quad ``does not imply.'' (\textbackslash{} generally means ``not.'')
+    \end{itemize}
+
+    You might occasionally see $\land$ for ``and,'' $\lor$ for ``or.'' Just write the damn words
+\end{frame}
+
+\begin{frame}{An Aside For This Lecture}
+    In this lecture, I will refer to ``A,B,C...'' as \emph{individual claims}
+
+    I will refer to \emph{logical conditions} using greek letters -- $\alpha,\beta$, etc.
+
+    \emph{We don't apply any substantive meaning (yet).}
+\end{frame}
+
+\begin{frame}[fragile]{Implies}
+Our strongest operator is $\implies$, typed as \verb|\implies|:
+
+If $A \implies B$, then claim $A$'s truth lends claim $B$'s truth.
+\pause
+
+For example:
+
+\begin{itemize}
+    \item \verb|[state]| follows the ``Nordic Model'' $\implies$ \verb|[state]| employs a social democratic welfare system
+    \item \verb|[state]| is a liberal democracy $\implies$ \verb|[state]| has a legislature \verb|OR| \verb|[state]| is a direct democracy
+    \item United Nations recognizing \verb|[state]| $\implies$ \verb|[state]| is a country
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]{Limits of Implication}
+Implication is a \textcolor{red}{unidirectional} relationship: $A \implies B$ does not tell us that $B \implies A$.
+
+Consider the claim $A \implies B$. Then, we have:
+\begin{itemize}
+    \item If $A$, then $B$;
+    \item If $\neg B$, then $\neg A$
+\end{itemize}
+But we do \textcolor{red}{NOT necessarily} have:
+\begin{itemize}
+    \item If $B$, then $A$;
+    \item If $\neg A$, then $\neg B$
+\end{itemize}
+\textcolor{lightgray}{What do these conditions look like formalized?}
+\end{frame}
+
+\begin{frame}{Handling Negation (pt. 1)}
+    We use two different ``negation'' operators, with the following loose applications...
+
+    \begin{itemize}
+        \item We use $\not$ \quad over an operation to show that the relationship is \textbf{not necessarily} true
+        \item We use $\neg$ to show that some relationship is \textbf{necessarily not} true
+    \end{itemize}
+
+    For example, the following two condition are \textcolor{red}{not} equivalent:
+
+    \begin{enumerate}
+        \item $A \centernot\implies B$
+        \item $A \implies \neg B$
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Iff}
+    Our strongest operator is $\iff$, or ``if and only if.'' This implies a \textbf{bidirectional relationship}.
+
+    If $A \iff B$, then:
+    \begin{enumerate}
+        \item $A \implies B$, AND 
+        \item $B \implies A$
+    \end{enumerate}
+
+    Neither $A$ nor $B$ can be true on their own. 
+    
+    \emph{If we know $A \iff B$ to be true, what do we need to observe to determine either $A$ or $B$?}
+\end{frame}
+
+\begin{frame}[fragile]{Iff Examples}
+    Iff statements are especially present when defining terms and concepts. \emph{\textcolor{lightgray}{Why?}} 
+
+    \begin{itemize}
+        \item \verb|[state]| has free \& fair elections with uncertain outcomes $\iff$ \verb|[state]| is a democracy
+        \item A central bank is entirely independent $\iff$ elected officials cannot control or influence the interest rate
+        \item A legislative bloc has an outright majority $\iff$ it holds more than half of legislative seats
+    \end{itemize}
+\end{frame}
+
+
+\begin{frame}{Logical Grammar}
+    Logical statements often require complexity. We use parentheses to identify an order of operations:
+    \begin{itemize}
+        \item $(A \text{ and } B) \implies C$: If $A$ and $B$, then $C$.
+        \item $A \implies (B \text{ and } C)$: If $A$, then $B$ and $C$.
+    \end{itemize}
+    
+    This looks simple so far...
+\end{frame}
+
+\begin{frame}{Handling Negation (pt. 2)}
+    Logical ordering becomes very important when considering negative conditions or interactions. For example, the following statements are \textcolor{red}{not} equivalent:
+
+    \begin{enumerate}
+        \item $\neg (A \text { and } B) \implies C$
+        \item $\neg A \text { and } \neg B \implies C$
+    \end{enumerate}
+
+    \emph{Which of these statements would be more challenging to prove?}
+\end{frame}
+
+
+\begin{frame}{Strength of Conditions}
+    Some conditions are harder to meet than others. A helpful consideration is identifying \textbf{nesting} conditions: is one condition implies by another?
+
+    We can consider a condition $\alpha$ as \textbf{stronger} than a condition $\beta$ if \textcolor{red}{(not iff)} $\alpha \implies \beta$.
+
+    \pause
+    For example, the following conditions have increasing strength:
+    \begin{enumerate}
+        \item A legislative bloc has plurality control
+        \item A legislative bloc is the dominant group of a majority coalition
+        \item A legislative bloc has an outright majority
+        \item A legislative bloc has a supermajority (can pass any item without failure)
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{An Interesting Application: Bureaucratic Discretion}
+    A common question in domestic politics regards how much \emph{discretion} principals lend to their agents (see Huber \& Shipman 2002).
+
+    Central tradeoff: providing discretion allows for both effectiveness and shirking.
+
+    But, to evaluate this theory, we must measure bureaucratic discretion...
+\end{frame}
+
+\begin{frame}{An Interesting Application: Bureaucratic Discretion}
+    Much of the literature on bureaucratic discretion uses legislative word count as an independent variable (again, see Huber \& Shipman 2002). This is a proxy in accordance with the following logic:
+
+    \begin{itemize}
+        \item A bureaucrat facing conditions $A$ and $B$ is more constrained than a bureaucrat facing only $A$ or only $B$
+        \item In order to implement conditions $A$ and $B$, legislators often need to write \emph{at least} $A$ \emph{plus} some additions to achieve $B$
+        \item Therefore, in expectation, longer written laws should imply additional conditions on bureaucratic behavior (and therefore less discretion)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Back to It}
+    Clearly, $\iff$ is a stronger condition than $\implies$. (Why?)
+
+    \pause
+    Is $\centernot\iff$ a stronger condition than $\iff$?
+
+    \pause
+    Is $\centernot\iff$ a stronger condition than $\centernot\implies$?
+
+    \pause
+    Is $\neg \iff \neg$ a stronger condition than $\centernot\implies$?
+\end{frame}
+
+
+\begin{frame}{Nesting: Necessary \& Sufficient}
+    We can characterize conditions as \textbf{necessary} and/or \textbf{sufficient}:
+
+    \begin{itemize}
+        \item Condition $\alpha$ is sufficient for condition $\beta$ if $\alpha \implies \beta$.
+        \begin{itemize}
+            \item \textcolor{gray}{If this is true, what does observing $\not \beta$ tell us?}
+        \end{itemize}
+        \item Condition $\alpha$ is necessary for condition $\beta$ if $\neg \alpha \implies \neg \beta$
+        \begin{itemize}
+            \item \textcolor{gray}{If this is true, what does observing $\beta$ tell us?}
+        \end{itemize}
+    \end{itemize}
+
+    \emph{Which type of condition is stronger?}
+\end{frame}
+
+
+
+\begin{frame}{What Is To Be Done?}
+    To produce meaningful conclusions, we will focus on four fundamental ``proofs'' using these logical operations:
+
+    \begin{enumerate}
+        \item Direct
+        \item Contrapositive
+        \item Contradiction
+        \item Cases
+    \end{enumerate}
+
+    These are general strategies; there's not always a ``correct'' fit.
+\end{frame}
+
+
+\begin{frame}{Direct Proofs}
+    Direct proofs simply show that multiple conditions are equivalent.
+
+    Suppose we want to prove $A \iff B$. Then, a direct proof would need to show both of the following:
+
+    \begin{itemize}
+        \item If $A$, then $B$ ($A \implies B$)
+        \item If $B$, then $A$ ($B \implies A$)
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{Why Not Direct?}
+    Direct proofs can be great \emph{if we have sufficient information}; we don't always.
+
+    For example, suppose we want to prove that every perfect direct democracy\footnote{Every citizen has equal influence over outcomes} has an imbalanced tiebreak institution. Can we prove this directly?
+
+    %answer: no, because whether or not a nation is a perfect direct democracy presumably depends on whether or not the tiebreak is objective
+\end{frame}
+
+\begin{frame}{The Contrapositive}
+    Contrapositives invert $\implies$ and allows us to prove via \textbf{falsification}. Namely, $A \implies B$ is equivalent to $\neg B \implies \neg A$.
+
+    Suppose we want to prove $A \iff B$, but could not conclude directly that $B \implies A$ Then, a contrapositive proof would need to show:
+
+    \begin{itemize}
+        \item If $A$, then $B$ (or $A \implies B$)
+        \item If $\neg B$, then $\neg A$ (or $\neg B \implies \neg A$)
+    \end{itemize}
+
+    This tends to be an easier proof of $\iff$ statements than the direct route above.
+\end{frame}
+
+\begin{frame}{A Contrapositive Example}
+    Can we use a contrapositive proof to prove our above claim (that every perfect direct democracy has an imbalanced tiebreak institution)?
+    \pause
+
+    Yes! We just need to show the following: If a state does NOT have an imbalanced tiebreak institution, then it is NOT a perfect direct democracy. We can prove this directly.
+\end{frame}
+
+
+\begin{frame}{Proof by Contradiction}
+    Contradiction is a powerful proof technique to demonstrate that a claim is true \emph{in all cases.}
+
+    We start with a claim that contradicts what we want to prove. If we want to prove $A \iff B$, we then start with: ``Suppose not. Then...''
+
+    Think of contradiction as a rabbit-hole proof: expand conditions as far as we can, \underline{until something breaks}
+
+\end{frame}
+
+
+\begin{frame}{Contradiction in Abstract}
+    Let's expand upon the arbitrary proof by contradiction (proving that $A \iff B$). The proof might proceed:
+
+    \begin{enumerate}
+        \item Suppose not.
+        \item Then, either $A \centernot\implies B$ or $B \centernot\implies A$.
+        \item Then, either there must exist a case satisfying only $A$ and not $B$ or only $B$ and not $A$.
+        \item \emph{Disprove either claim.}
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Using Contradiction: MVT}
+    The Median Voter Theorem suggests that candidate platforms will converge to the preference of the median voter:
+
+    \begin{quote}
+        Suppose there are two candidates $A$ and $B$ who establish policy positions along a single dimension (canonically, a preferred tax rate). Then, if $A$ and $B$ are only motivated by winning office, they will both establish policy positions equivalent to the preference of the mathematically median voter.
+    \end{quote}
+\end{frame}
+
+
+\begin{frame}{Why All The Excitement?}
+    These proof structures have gotten increasingly more complex -- but, they have widened the range of relationships we are examining, and we are usually just looking for one to ``break.''
+
+    From $A \iff B$, we've extended to include:
+    \begin{itemize}
+        \item Direct: $A \implies B$, $B \implies A$
+        \item Contrapositive: $A \implies B$, $\neg B \implies \neg A$
+        \item Contradiction: $A \centernot\implies B$, $B \centernot\implies A$
+    \end{itemize}
+
+    Proof structures allow us to cast wider nets when fishing for claims.
+\end{frame}
+
+
+\begin{frame}{Proof by Cases}
+Not necessarily mutually exclusive from the above, but an important consideration: oftentimes, we may only have a finite number of possible cases, and can use that to our advantage.
+
+Suppose we want to prove that every party represented in Congress holds a primary. We have two options:
+
+\begin{enumerate}
+    \item Prove that in order to be represented in Congress, a party must have held a primary
+    \item Just look at the parties represented in Congress (2ish), and see whether or not they held a primary
+\end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile]{Proof By Cases}
+    One common case structure we can often use as a shortcut is derived from ordering. Suppose we have two parties, \verb|LUKE| and \verb|RYAN|. Then, one of the following MUST be true w.r.t. vote counts:
+    \begin{enumerate}
+        \item \verb|#LUKE| $>$ \verb|#RYAN|
+        \item \verb|#LUKE| $<$ \verb|#RYAN| (most likely)
+        \item \verb|#LUKE| = \verb|#RYAN|
+    \end{enumerate}
+    
+    \emph{Not every case needs to be proven the same way...}
+\end{frame}
+
+
+\begin{frame}[fragile]{Axiomatic Truths}
+
+    Our goal is usually to prove ``as far down as possible'' -- but, we need some initial foundations.
+
+    \textbf{Axioms} are things we hold true without proofs; they are generally extremely basic.
+    
+\end{frame}
+
+
+
+\end{document}

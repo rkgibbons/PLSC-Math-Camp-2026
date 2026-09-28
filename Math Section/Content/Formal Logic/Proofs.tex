@@ -1,0 +1,80 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black}
+
+%% ------------------------------------------------------------------
+%%  Theorem-like environments
+%%    plain     : theorem lemma proposition corollary claim
+%%    definition: definition example exercise
+%%    remark    : remark note   (unnumbered)
+%%  Proof environment comes from amsthm: \begin{proof} ... \end{proof}
+%% ------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+%% ------------------------------------------------------------------
+%%  Shorthand macros
+%% ------------------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\ip}[1]{\left\langle #1 \right\rangle}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\title{Proofs \\[0.35em] \large Formal Logic}
+\author{Ryan Gibbons \& Luke Cain \\ UChicago Political Science Math Camp}
+\date{Math Camp 2026}
+
+\begin{document}
+\maketitle
+
+\subsection*{Direct Democracy}
+
+Contrapositive: every fair democracy has a tiebreaking rule. \\
+
+Suppose that a country does not have a tiebreaking rule. Then, they either have elections without tiebreaks, or no elections at all. \\
+
+If no elections, then clearly not a democracy.
+
+If no tiebreaks, then someone must have outsized influence over the outcome (be decisive) -- but then, they cannot be a democracy. 
+
+
+\subsection*{Median Voter Theorem}
+
+Proof by contradiction: suppose not. Then, there exists some equilibrium whereby either $A$ or $B$ is playing a policy separate from the median voter's preferences. \\
+
+Then, either $A$ is closer to $M$ than $B$, or $B$ is closer to $M$ than $A$, or $A$ and $B$ are some equal (non-zero) distance away from $M$. \\
+
+If one is further than the other, the closer one will win -- so, the further one cannot be playing an optimal point. \\
+
+If they are the same (non-zero) distance away, either one could win by moving just a little bit closer to $M$ -- so, neither of these players can be playing an optimal point. \\
+
+Therefore, it cannot be the case that $A \neq M$ or $B \neq M$ in equilibrium. Therefore, $A = B = M$ in equilibrium.
+
+\end{document}

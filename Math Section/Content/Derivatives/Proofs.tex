@@ -1,0 +1,89 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{xcolor}
+\usepackage{parskip}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,urlcolor=blue!45!black}
+
+%% ------------------------------------------------------------------
+%%  Theorem-like environments
+%%    plain     : theorem lemma proposition corollary claim
+%%    definition: definition example exercise
+%%    remark    : remark note   (unnumbered)
+%%  Proof environment comes from amsthm: \begin{proof} ... \end{proof}
+%% ------------------------------------------------------------------
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{claim}[theorem]{Claim}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}[theorem]{Exercise}
+
+\theoremstyle{remark}
+\newtheorem*{remark}{Remark}
+\newtheorem*{note}{Note}
+
+%% ------------------------------------------------------------------
+%%  Shorthand macros
+%% ------------------------------------------------------------------
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\eps}{\varepsilon}
+\newcommand{\abs}[1]{\left\lvert #1 \right\rvert}
+\newcommand{\norm}[1]{\left\lVert #1 \right\rVert}
+\newcommand{\set}[1]{\left\{ #1 \right\}}
+\newcommand{\ip}[1]{\left\langle #1 \right\rangle}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\title{Proofs \\[0.35em] \large Derivatives}
+\author{Ryan Gibbons \& Luke Cain \\ UChicago Political Science Math Camp}
+\date{Math Camp 2026}
+
+\begin{document}
+\maketitle
+
+%% Lecture notes and proofs, drafted ahead of the session.
+%% The skeleton below is only a scaffold --- overwrite it freely.
+
+\section{Topic}
+
+\begin{definition}[term]
+State the definition here.
+\end{definition}
+
+\begin{theorem}[name, optional]
+State the claim here.
+\end{theorem}
+
+\begin{proof}
+Write the proof here.  End-of-proof box is automatic.
+\end{proof}
+
+\begin{example}
+A worked instance.
+\end{example}
+
+
+\section{Topic}
+
+% \begin{lemma} ... \end{lemma}
+% \begin{proof} ... \end{proof}
+
+
+\section*{Scratch}
+
+Loose derivations, alternate approaches, things to double-check before lecture.
+
+\end{document}

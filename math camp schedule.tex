@@ -1,0 +1,95 @@
+\documentclass[11pt]{article}
+
+\usepackage[margin=.5in]{geometry}
+\usepackage[table,dvipsnames]{xcolor} % [table] loads colortbl -> enables \cellcolor, \rowcolor, \columncolor
+\usepackage{array}                    % extended column specs: >{...}, \arraybackslash, m{} columns
+
+%=====================================================================
+%  COLUMN SIZING  --  edit these four numbers to reshape the columns
+%---------------------------------------------------------------------
+%  Each value is that column's width as a fraction of \linewidth.
+%  They are INDEPENDENT: change one number and only that column moves.
+%  Keep the sum under ~0.90 so the columns plus padding still fit
+%  inside the text block.
+%=====================================================================
+\newcommand{\colWidthOne}  {0.12}   % Time
+\newcommand{\colWidthTwo}  {0.24}
+\newcommand{\colWidthThree}{0.24}
+\newcommand{\colWidthFour} {0.24}
+
+%=====================================================================
+%  SPACING  --  make the grid roomier here
+%---------------------------------------------------------------------
+%  \arraystretch  : row height multiplier (1 = default). Bump for tall rows.
+%  \tabcolsep     : horizontal padding on each side of a cell (default 6pt).
+%  \arrayrulewidth: thickness of every grid line (default 0.4pt).
+%=====================================================================
+\renewcommand{\arraystretch}{3}
+\setlength{\tabcolsep}{14pt}
+\setlength{\arrayrulewidth}{0.6pt}
+
+%=====================================================================
+%  HOW TO SHADE A SINGLE CELL
+%---------------------------------------------------------------------
+%  Put \cellcolor{<color>} at the very start of the cell's content:
+%
+%      Normal cell & \cellcolor{yellow}Shaded cell & ... \\
+%
+%  Lighter tint via a mix:            \cellcolor{blue!15}
+%  Named colors (dvipsnames option):  \cellcolor{LimeGreen!30}
+%  Your own color, defined once in the preamble:
+%      \definecolor{highlight}{HTML}{FFE08A}
+%  then:                              \cellcolor{highlight}
+%
+%  Related:
+%    \rowcolor{gray!20}     -> shades a whole row (place before its 1st cell)
+%    \columncolor{gray!20}  -> shades a whole column (put inside the column spec,
+%                              e.g. >{\columncolor{gray!20}}m{\colWidthOne\linewidth})
+%=====================================================================
+\definecolor{highlight}{HTML}{FFE08A}
+
+\begin{document}
+\thispagestyle{empty}
+\begin{center}
+
+  \Large
+  2026 Math Camp Schedule
+
+\begin{table}[htbp]
+  \centering
+  % m{} columns center content vertically; | between every column + \hline
+  % after every row give grid lines everywhere.
+  \begin{tabular}{
+      | >{\raggedright\arraybackslash}m{\colWidthOne\linewidth}
+      | >{\raggedright\arraybackslash}m{\colWidthTwo\linewidth}
+      | >{\raggedright\arraybackslash}m{\colWidthThree\linewidth}
+      | >{\raggedright\arraybackslash}m{\colWidthFour\linewidth} |
+    }
+    \hline
+    \rowcolor{gray!25}
+    \textbf{Day} & \textbf{Math} (9:30a-12:30p) & \textbf{Code} (1:30p-4:30p) & \textbf{Notes} \\
+    \hline
+    Tues. 9/8  & Numbers, Sets, Set Theory &    Welcome to R, Objects, Logic       &        \\
+    \hline
+    Wed. 9/9 &  Functions          &  Functions \& Packages         &                  \\
+    \hline
+    Thurs. 9/10 & Formal Logic  & Tidyverse \& Data Wrangling           &            \\
+    \hline
+    Fri. 9/11 & Analysis      & Graphics \& Presentation               &             \\
+    \hline
+    Mon. 9/14  & Derivation      &    Claude, Command Line, \& \LaTeX                 & \cellcolor{highlight} MATH IN PM, CODE IN AM \\
+    \hline
+    Tues. 9/15  & Optimization & Loops           &        \\
+    \hline
+    Wed. 9/16  & \cellcolor{gray!15}Axiomatic Probability \& Integration  & Randomness, Probability, \& Simulations & 2-day math lecture   \\
+    \hline
+    Thurs. 9/17  & \cellcolor{gray!15}Axiomatic Probability \& Integration    & Expectation, Variance, \& Covariance             & 2-day math lecture         \\ 
+    \hline
+    Fri. 9/18 & Matrices, Vectors, \& Dimensionality & Intro to CLT, LLN, \& Distributions & Sherry Hour @5pm \\
+    \hline 
+  \end{tabular}
+\end{table}
+
+\end{center}
+
+\end{document}
